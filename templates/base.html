@@ -3,10 +3,24 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}Django Boards{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Holtwood+One+SC|Libre+Barcode+39+Text|Monoton|Zilla+Slab+Highlight" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/app.css' %}">
     </head>
     <body>
-        {% block content %}{% endblock %}
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff1b0">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">Django Boards</a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <ol class="breadcrumb my-4">
+                {% block breadcrumb %}{% endblock %}
+            </ol>
+            {% block content %}{% endblock %}
+        </div>
     </body>
 </html>
