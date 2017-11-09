@@ -3,9 +3,9 @@ from django.urls import resolve
 from django.test import TestCase
 from django.contrib.auth.models import User
 
-from . import views
-from . import models
-from . import forms
+from .. import views
+from .. import models
+from .. import forms
 
 class HomeTests(TestCase):
     def setUp(self):
