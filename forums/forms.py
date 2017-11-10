@@ -10,3 +10,8 @@ class NewTopicForm(forms.ModelForm):
     class Meta:
         model = models.Topic
         fields = ['subject', 'message']
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = models.Post
+        fields = ['message', ]

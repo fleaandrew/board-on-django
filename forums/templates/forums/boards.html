@@ -24,9 +24,19 @@
                         <a href="{% url 'forums:board_topics' pk=board.pk %}">{{ board.name }}</a>
                         <small class="text-muted d-block">{{ board.description }}</small>
                     </td>
-                    <td class="align-middle">0</td>
-                    <td class="align-middle">0</td>
-                    <td class="align-middle"></td>
+                    <td class="align-middle">{{ board.get_posts_count }}</td>
+                    <td class="align-middle">{{ board.topics.count }}</td>
+                    <td class="align-middle">
+                        {% if board.get_posts_count %}
+                            {% with post=board.get_last_post %}
+                                <a href="{% url 'forums:topic_posts' pk=board.pk topic_pk=post.topic.pk %}">
+                                    By {{ post.created_by.username }} at {{ post.created_at }}
+                                </a>
+                            {% endwith %}
+                        {% else %}
+                            <small class="text-muted">There is nothing here yet.</small>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
