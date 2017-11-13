@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^boards/', include('forums.urls', namespace='forums')),
     # url(r'^reset/', include('accounts.urls', namespace='accounts')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name='home'),
+    url(r'^$', views.BoardListView.as_view(), name='home'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
@@ -46,4 +46,5 @@ urlpatterns = [
         template_name='accounts/password_change.html'), name='password_change'),
     url(r'^settings/password/done/$', auth_views.PasswordChangeDoneView.as_view(
         template_name='accounts/password_change_done.html'), name='password_change_done'),
+    url(r'^settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account'),
 ]
