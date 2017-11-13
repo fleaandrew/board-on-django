@@ -11,9 +11,6 @@ from django.urls import reverse
 from . import models
 from . import forms
 
-# def home(request):
-#     boards = models.Board.objects.all()
-#     return render(request, 'forums/boards.html', {'boards': boards})
 
 class BoardListView(ListView):
     model = models.Board
@@ -21,23 +18,6 @@ class BoardListView(ListView):
     template_name = 'forums/boards.html'
 
 
-# def board_topics(request, pk):
-#     board = get_object_or_404(models.Board, pk=pk)
-#     queryset = board.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
-#     page = request.GET.get('page', 1)
-#
-#     paginator = Paginator(queryset, 20)
-#
-#     try:
-#         topics = paginator.page(page)
-#     except PageNotAnInteger:
-#         topics = paginator.page(1)
-#     except EmptyPage:
-#         # probably the user tried to add a page number
-#         # in the url, so we fallback to the last page
-#         topics = paginator.page(paginator.num_pages)
-#
-#     return render(request, 'forums/board_topics.html', {'board': board, 'topics': topics})
 
 
 class TopicListView(ListView):
@@ -74,13 +54,6 @@ def new_topic(request, pk):
     else:
         form = forms.NewTopicForm()
     return render(request, 'forums/new_topic.html', {'form': form, 'board':board})
-
-# def topic_posts(request, pk, topic_pk):
-#     topic = get_object_or_404(models.Topic, board__pk=pk, pk=topic_pk)
-#     topic.views += 1
-#     topic.save()
-#     return render(request, 'forums/topic_posts.html', {'topic': topic})
-
 
 class PostListView(ListView):
     model = models.Post
